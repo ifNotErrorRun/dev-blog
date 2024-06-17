@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
+    "@million/lint": "1.0.0-rc.26",
     "@next/mdx": "^14.2.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -20,8 +21,10 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "shadcn-ui": "^0.8.0",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
