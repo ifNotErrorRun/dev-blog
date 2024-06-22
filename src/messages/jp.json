@@ -1,5 +1,5 @@
 {
-  "main": {
+  "global": {
     "title": "チャノ.dev",
     "description": "チャノのブログです。"
   }

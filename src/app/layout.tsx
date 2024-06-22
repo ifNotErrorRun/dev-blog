@@ -1,17 +1,23 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { cn } from "@/lib/utils";
+import "./globals.css";
 
-export default async function LocaleLayout({
-  children,
-  params: { locale },
-}: {
+interface LayoutProps {
   children: React.ReactNode;
   params: { locale: string };
-}) {
+}
+
+export default async function GlobalLayout({
+  children,
+  params: { locale },
+}: LayoutProps) {
   const messages = await getMessages();
+
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} suppressHydrationWarning>
+      <head />
+      <body className={cn(`min-h-screen bg-background antialiased`)}>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
