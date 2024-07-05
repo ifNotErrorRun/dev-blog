@@ -1,16 +1,40 @@
-import createMiddleware from "next-intl/middleware";
+import { NextRequest, NextResponse } from "next/server";
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ["en", "ko", "jp"],
+let locales = ["en", "ko", "jp"];
 
-  // Used when no locale matches
-  defaultLocale: "jp",
-});
+// Get the preferred locale, similar to the above or using a library
+function getLocale(request: NextRequest) {
+  const acceptLanguage = request.headers.get("Accept-Language");
+  if (!acceptLanguage) return locales[0];
+  const preferredLocales = acceptLanguage
+    .split(",")
+    .map((locale) => locale.split(";")[0].trim());
+
+  for (const locale of preferredLocales) {
+    if (locales.includes(locale)) return locale;
+  }
+
+  return locales[0];
+}
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (pathnameHasLocale) return;
+
+  const locale = getLocale(request);
+  request.nextUrl.pathname = `/${locale}${pathname}`;
+  return NextResponse.redirect(request.nextUrl);
+}
 
 export const config = {
   matcher: [
-    "/((?!api|_next|static|public|images|favicon.ico|robots.txt).*)",
-    "/(en|ko|jp)(/(?!api|_next|static|public|images|favicon.ico|robots.txt).*)",
+    // Skip all internal paths (_next)
+    "/((?!_next).*)",
+    // Optional: only run on root (/) URL
+    // '/'
   ],
 };

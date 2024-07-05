@@ -1,3 +1,5 @@
+"use client";
+
 import {
   NavigationMenuItem,
   NavigationMenuLink,
@@ -5,7 +7,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
-function NavItem({ link, label }: { link: string; label: string }) {
+const NavItem = ({ link, label }: { link: string; label: string }) => {
   return (
     <NavigationMenuItem>
       <Link href={link} legacyBehavior passHref>
@@ -15,6 +17,6 @@ function NavItem({ link, label }: { link: string; label: string }) {
       </Link>
     </NavigationMenuItem>
   );
-}
+};
 
 export default NavItem;
