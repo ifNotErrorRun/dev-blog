@@ -1,6 +1,11 @@
 {
   "global": {
     "title": "チャノ.dev",
-    "description": "チャノのブログです。"
+    "description": "チャノのブログです。",
+    "home": "ホーム",
+    "articles": "記事一覧",
+    "series": "シリーズ",
+    "tags": "タグ",
+    "resume": "履歴書"
   }
 }

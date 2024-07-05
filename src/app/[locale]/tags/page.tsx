@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <>
-      <TypographyH1>{t("title")}</TypographyH1>
+      <TypographyH1>{t("tags")}</TypographyH1>
     </>
   );
 }

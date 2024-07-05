@@ -1,6 +1,11 @@
 {
   "global": {
     "title": "Chanho.dev",
-    "description": "Chanho.dev"
+    "description": "Chanho.dev",
+    "home": "Home",
+    "articles": "Articles",
+    "series": "Series",
+    "tags": "Tags",
+    "resume": "Resume"
   }
 }
