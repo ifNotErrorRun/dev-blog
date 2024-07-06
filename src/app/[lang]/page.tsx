@@ -1,7 +1,8 @@
 "use server";
 
+import { getDictionary } from "../../lib/i18n/dictionaries";
+
 import TypographyH1 from "@/components/atom/TypographyH1";
-import { getDictionary } from "../dictionaries";
 
 interface Props {
   params: { lang: string };

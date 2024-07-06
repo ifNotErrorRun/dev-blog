@@ -1,14 +1,18 @@
 "use server";
 
-import NavItem from "@/components/atom/NavItem";
+import React from "react";
+import Link from "next/link";
+import { getDictionary } from "../../lib/i18n/dictionaries";
+
 import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import React from "react";
-import { getDictionary } from "../dictionaries";
-import { cn } from "@/lib/utils";
-import "../global.css";
+import { Separator } from "@/components/ui/separator";
+import NavItem from "@/components/atom/NavItem";
+import TypographyH3 from "@/components/atom/TypographyH3";
+import ThemeToggle from "@/components/atom/ThemeToggle";
+import LangToggle from "@/components/atom/LangToggle";
 
 interface Props {
   params: { lang: string };
@@ -22,11 +26,13 @@ export default async function MainLayout({
   const t = await getDictionary(lang);
 
   return (
-    <html lang={lang} suppressHydrationWarning>
-      <head />
-      <body className={cn(`min-h-screen bg-background antialiased`)}>
-        <div className="p-5">
-          <div className="flex justify-between content-center">
+    <div className="flex justify-center w-full py-3">
+      <div className="flex flex-col xl:w-[1024px] lg:w-[768px]">
+        <nav className="flex justify-between">
+          <TypographyH3>
+            <Link href={`/${lang}`}>{t.global.title}</Link>
+          </TypographyH3>
+          <div className="grid grid-flow-col-dense gap-x-4">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavItem link={`/${lang}`} label={t.global.home} />
@@ -36,12 +42,15 @@ export default async function MainLayout({
                 <NavItem link={`/${lang}/resume`} label={t.global.resume} />
               </NavigationMenuList>
             </NavigationMenu>
+            <ThemeToggle />
+            <LangToggle />
           </div>
+        </nav>
+        <Separator className="my-3" />
 
-          <div className="p-10">{children}</div>
-        </div>
-      </body>
-    </html>
+        <div className="mt-5 p-10">{children}</div>
+      </div>
+    </div>
   );
 }
 
