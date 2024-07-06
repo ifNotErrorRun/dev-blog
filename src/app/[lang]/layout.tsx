@@ -36,10 +36,10 @@ export default async function MainLayout({
             <NavigationMenu>
               <NavigationMenuList>
                 <NavItem link={`/${lang}`} label={t.global.home} />
+                <NavItem link={`/${lang}/about`} label={t.global.about} />
                 <NavItem link={`/${lang}/articles`} label={t.global.articles} />
                 <NavItem link={`/${lang}/series`} label={t.global.series} />
                 <NavItem link={`/${lang}/tags`} label={t.global.tags} />
-                <NavItem link={`/${lang}/resume`} label={t.global.resume} />
               </NavigationMenuList>
             </NavigationMenu>
             <ThemeToggle />
@@ -48,7 +48,7 @@ export default async function MainLayout({
         </nav>
         <Separator className="my-3" />
 
-        <div className="mt-5 p-10">{children}</div>
+        <div className="mt-5 p-10 justify-start">{children}</div>
       </div>
     </div>
   );
