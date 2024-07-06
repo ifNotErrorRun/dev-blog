@@ -27,7 +27,7 @@ export default async function MainLayout({
 
   return (
     <div className="flex justify-center w-full py-3">
-      <div className="flex flex-col xl:w-[1024px] lg:w-[768px]">
+      <div className="flex flex-col xl:w-[1024px] lg:w-[768px] md:w-[650px] sm:w-[500px]">
         <nav className="flex justify-between">
           <TypographyH3>
             <Link href={`/${lang}`}>{t.global.title}</Link>
@@ -35,7 +35,6 @@ export default async function MainLayout({
           <div className="grid grid-flow-col-dense gap-x-4">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavItem link={`/${lang}`} label={t.global.home} />
                 <NavItem link={`/${lang}/about`} label={t.global.about} />
                 <NavItem link={`/${lang}/articles`} label={t.global.articles} />
                 <NavItem link={`/${lang}/series`} label={t.global.series} />
@@ -48,7 +47,7 @@ export default async function MainLayout({
         </nav>
         <Separator className="my-3" />
 
-        <div className="mt-5 p-10 justify-start">{children}</div>
+        <div className="mt-5 py-10 justify-start">{children}</div>
       </div>
     </div>
   );

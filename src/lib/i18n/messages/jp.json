@@ -1,9 +1,9 @@
 {
   "global": {
-    "title": "チャノ.dev",
-    "description": "チャノのブログです。",
+    "title": "log.info(knowledge)",
+    "description": "Chanho.dev ブログ",
     "home": "ホーム",
-    "about": "自己紹介",
+    "about": "ご紹介",
     "articles": "記事一覧",
     "series": "シリーズ",
     "tags": "タグ",

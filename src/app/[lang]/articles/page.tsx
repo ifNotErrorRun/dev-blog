@@ -15,8 +15,9 @@ export default async function ArticlesPage({ params: { lang } }: Props) {
   return (
     <>
       <TypographyH1>{t.global.articles}</TypographyH1>
-      <div className="mt-5">
-        <Link href={"articles/this-is-test-article-page"}>test article</Link>
+      <div className="mt-10 grid gap-y-2">
+        <Link href={"articles/test"}>test article</Link>
+        <Link href={"articles/dev/dev-stack"}>Dev Stack</Link>
       </div>
     </>
   );
