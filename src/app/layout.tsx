@@ -1,3 +1,7 @@
+"use server";
+
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/lib/theme/theme-provider";
 import { cn } from "@/lib/utils";
 import "./global.css";
@@ -19,6 +23,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             disableTransitionOnChange
           >
             {children}
+            <SpeedInsights />
+            <Analytics />
           </ThemeProvider>
         </body>
       </html>
