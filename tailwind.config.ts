@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const { spacing } = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
@@ -72,9 +73,19 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: () => ({
+        default: {
+          css: {
+            "h1,h2,h3,h4": {
+              "scroll-margin-top": spacing[32],
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [require("tailwindcss-animate")],
+
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
 
 export default config;
