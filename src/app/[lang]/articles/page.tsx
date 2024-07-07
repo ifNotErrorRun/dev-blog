@@ -11,7 +11,6 @@ interface Props {
 }
 
 export default async function ArticlesPage({ params: { lang } }: Props) {
-  debugger;
   const t = await getDictionary(lang);
   const mdList = await getAllMD(lang);
 

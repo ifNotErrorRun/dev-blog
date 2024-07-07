@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypePrismPlus from "rehype-prism-plus";
 
 import TypographyH1 from "./TypographyH1";
 import TypographyH2 from "./TypographyH2";
@@ -55,7 +56,11 @@ const CustomMDX = ({ source, options, components }: MDXRemoteProps) => {
               },
             ],
             [rehypeAutolinkHeadings, { className: "anchor" }],
-            [rehypePrettyCode, { theme: "one-dark-pro" }],
+            [rehypePrismPlus],
+            // [
+            //   rehypePrettyCode,
+            //   { theme: "one-dark-pro", defaultLang: "plaintext" },
+            // ],
           ],
         },
       }}

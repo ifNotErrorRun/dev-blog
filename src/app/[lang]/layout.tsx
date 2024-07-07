@@ -27,7 +27,7 @@ export default async function MainLayout({
 
   return (
     <div className="flex justify-center w-full py-3">
-      <div className="flex flex-col xl:w-[1024px] lg:w-[768px] md:w-[650px] sm:w-[500px]">
+      <div className="flex flex-col xl:w-[1024px] lg:w-[768px] md:w-[600px] sm:w-[300px]">
         <nav className="flex justify-between">
           <TypographyH3>
             <Link href={`/${lang}`}>{t.global.title}</Link>

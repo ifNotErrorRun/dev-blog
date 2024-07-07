@@ -4,6 +4,7 @@ import TypographyH1 from "@/components/atom/TypographyH1";
 import CustomMDX from "@/components/atom/CustomMDX";
 import { parseMDX } from "@/lib/md/md-utils";
 import "./prose.css";
+import "./code.css";
 
 interface Props {
   params: { lang: string; slugs: string[] };
