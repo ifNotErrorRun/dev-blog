@@ -5,7 +5,6 @@ import remarkBreaks from "remark-breaks";
 import rehypeSlug from "rehype-slug";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
 import rehypePrismPlus from "rehype-prism-plus";
 
 import TypographyH1 from "./TypographyH1";
