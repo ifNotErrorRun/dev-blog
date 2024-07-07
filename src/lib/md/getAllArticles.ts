@@ -1,26 +1,23 @@
+import fs from "fs";
 import { sync } from "glob";
-
-interface Slug {
-  slug: string;
-}
+import matter from "gray-matter";
 
 const ARTICLES_PATH = "articles";
-const POST_PATH = `${process.cwd()}/${ARTICLES_PATH}`;
+const ABSOLUTE_PATH = `${process.cwd()}/${ARTICLES_PATH}`;
 
 const getAllArticles = async (lang: string): Promise<Slug[]> => {
-  const postPaths = sync(`${POST_PATH}/${lang}/**/*.mdx`);
-  const paths = postPaths
-    .map((postPath) =>
-      postPath.replace(`${ARTICLES_PATH}/${lang}`, `${lang}/${ARTICLES_PATH}`)
-    )
-    .map((postPath) => {
-      return {
-        slug: postPath
-          .slice(postPath.indexOf(ARTICLES_PATH))
-          .replace(".mdx", ""),
-      };
-    });
-  return paths;
+  const targetArticlePath = `${ABSOLUTE_PATH}/${lang}/**/*.mdx`;
+  const foundPaths = sync(targetArticlePath);
+  return foundPaths.map((path) => {
+    const markdownFile = fs.readFileSync(path, "utf-8");
+    const { data: frontMatter } = matter(markdownFile);
+    const slug = path
+      .replace(`${ARTICLES_PATH}/${lang}`, ARTICLES_PATH)
+      .slice(path.indexOf(ARTICLES_PATH))
+      .replace(".mdx", "");
+    const title = frontMatter?.title ?? slug.slice(slug.lastIndexOf("/") + 1);
+    return { title, slug };
+  });
 };
 
 export default getAllArticles;

@@ -1,0 +1,50 @@
+.prose a {
+  @apply transition-all text-gray-700 dark:text-gray-400 no-underline;
+}
+
+.prose .anchor {
+  @apply invisible absolute no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  cursor: pointer;
+}
+
+.prose .anchor:after {
+  @apply text-gray-300 dark:text-gray-700;
+
+  content: "#";
+}
+
+.anchor:hover,
+.prose *:hover > .anchor {
+  @apply visible text-gray-300;
+}
+
+.prose .toc {
+  @apply fixed top-60 right-[calc(50%-700px)] w-96 h-full hidden xl:block;
+}
+
+code {
+  counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 3rem;
+}

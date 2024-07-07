@@ -1,10 +1,17 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+import rehypeSlug from "rehype-slug";
+import rehypeToc from "@jsdevtools/rehype-toc";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
 
 import TypographyH1 from "./atom/TypographyH1";
+import TypographyH2 from "./atom/TypographyH2";
 import TypographyH3 from "./atom/TypographyH3";
 
-export const components = {
+export const defaultComponents = {
   h1: (
     props: DetailedHTMLProps<
       HTMLAttributes<HTMLHeadingElement>,
@@ -12,6 +19,14 @@ export const components = {
     >
   ) => {
     return <TypographyH1 {...props}>{props.children}</TypographyH1>;
+  },
+  h2: (
+    props: DetailedHTMLProps<
+      HTMLAttributes<HTMLHeadingElement>,
+      HTMLHeadingElement
+    >
+  ) => {
+    return <TypographyH2 {...props}>{props.children}</TypographyH2>;
   },
   h3: (
     props: DetailedHTMLProps<
@@ -23,11 +38,28 @@ export const components = {
   },
 };
 
-export function CustomMDX(props: MDXRemoteProps) {
+export function CustomMDX({ source, options, components }: MDXRemoteProps) {
   return (
     <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      source={source}
+      options={{
+        ...options,
+        mdxOptions: {
+          remarkPlugins: [[remarkGfm], [remarkBreaks]],
+          rehypePlugins: [
+            [rehypeSlug],
+            [
+              rehypeToc,
+              {
+                headings: ["h1", "h2", "h3"],
+              },
+            ],
+            [rehypeAutolinkHeadings, { className: "anchor" }],
+            [rehypePrettyCode, { theme: "one-dark-pro" }],
+          ],
+        },
+      }}
+      components={{ ...defaultComponents, ...(components || {}) }}
     />
   );
 }
