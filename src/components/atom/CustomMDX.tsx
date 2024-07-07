@@ -7,11 +7,11 @@ import rehypeToc from "@jsdevtools/rehype-toc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 
-import TypographyH1 from "./atom/TypographyH1";
-import TypographyH2 from "./atom/TypographyH2";
-import TypographyH3 from "./atom/TypographyH3";
+import TypographyH1 from "./TypographyH1";
+import TypographyH2 from "./TypographyH2";
+import TypographyH3 from "./TypographyH3";
 
-export const defaultComponents = {
+const defaultComponents = {
   h1: (
     props: DetailedHTMLProps<
       HTMLAttributes<HTMLHeadingElement>,
@@ -38,7 +38,7 @@ export const defaultComponents = {
   },
 };
 
-export function CustomMDX({ source, options, components }: MDXRemoteProps) {
+const CustomMDX = ({ source, options, components }: MDXRemoteProps) => {
   return (
     <MDXRemote
       source={source}
@@ -62,4 +62,6 @@ export function CustomMDX({ source, options, components }: MDXRemoteProps) {
       components={{ ...defaultComponents, ...(components || {}) }}
     />
   );
-}
+};
+
+export default CustomMDX;

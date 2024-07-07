@@ -1,4 +1,5 @@
 interface Slug {
-  title: string;
+  lang?: string;
+  title?: string;
   slug: string;
 }
